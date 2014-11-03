@@ -15,6 +15,7 @@
 		70762C201A0821DF005DC3AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70762C1E1A0821DF005DC3AA /* LaunchScreen.xib */; };
 		70762C2C1A0821DF005DC3AA /* locationReminderAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70762C2B1A0821DF005DC3AA /* locationReminderAppTests.swift */; };
 		70762C361A0821F3005DC3AA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70762C351A0821F3005DC3AA /* MapKit.framework */; };
+		70762C381A082D64005DC3AA /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70762C371A082D64005DC3AA /* AddReminderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		70762C2A1A0821DF005DC3AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70762C2B1A0821DF005DC3AA /* locationReminderAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationReminderAppTests.swift; sourceTree = "<group>"; };
 		70762C351A0821F3005DC3AA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		70762C371A082D64005DC3AA /* AddReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				70762C121A0821DF005DC3AA /* AppDelegate.swift */,
 				70762C171A0821DF005DC3AA /* ViewController.swift */,
+				70762C371A082D64005DC3AA /* AddReminderViewController.swift */,
 				70762C191A0821DF005DC3AA /* Main.storyboard */,
 				70762C1C1A0821DF005DC3AA /* Images.xcassets */,
 				70762C1E1A0821DF005DC3AA /* LaunchScreen.xib */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70762C381A082D64005DC3AA /* AddReminderViewController.swift in Sources */,
 				70762C181A0821DF005DC3AA /* ViewController.swift in Sources */,
 				70762C161A0821DF005DC3AA /* locationReminderApp.xcdatamodeld in Sources */,
 				70762C131A0821DF005DC3AA /* AppDelegate.swift in Sources */,
@@ -420,6 +424,7 @@
 				70762C311A0821DF005DC3AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70762C321A0821DF005DC3AA /* Build configuration list for PBXNativeTarget "locationReminderAppTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +433,7 @@
 				70762C341A0821DF005DC3AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
