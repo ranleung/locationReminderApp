@@ -16,6 +16,7 @@
 		70762C2C1A0821DF005DC3AA /* locationReminderAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70762C2B1A0821DF005DC3AA /* locationReminderAppTests.swift */; };
 		70762C361A0821F3005DC3AA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70762C351A0821F3005DC3AA /* MapKit.framework */; };
 		70762C381A082D64005DC3AA /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70762C371A082D64005DC3AA /* AddReminderViewController.swift */; };
+		70EE47DA1A098BBE007D7C3D /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE47D91A098BBE007D7C3D /* Reminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		70762C2B1A0821DF005DC3AA /* locationReminderAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationReminderAppTests.swift; sourceTree = "<group>"; };
 		70762C351A0821F3005DC3AA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		70762C371A082D64005DC3AA /* AddReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		70EE47D91A098BBE007D7C3D /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				70762C1C1A0821DF005DC3AA /* Images.xcassets */,
 				70762C1E1A0821DF005DC3AA /* LaunchScreen.xib */,
 				70762C141A0821DF005DC3AA /* locationReminderApp.xcdatamodeld */,
+				70EE47D91A098BBE007D7C3D /* Reminder.swift */,
 				70762C101A0821DF005DC3AA /* Supporting Files */,
 			);
 			path = locationReminderApp;
@@ -229,6 +232,7 @@
 			files = (
 				70762C381A082D64005DC3AA /* AddReminderViewController.swift in Sources */,
 				70762C181A0821DF005DC3AA /* ViewController.swift in Sources */,
+				70EE47DA1A098BBE007D7C3D /* Reminder.swift in Sources */,
 				70762C161A0821DF005DC3AA /* locationReminderApp.xcdatamodeld in Sources */,
 				70762C131A0821DF005DC3AA /* AppDelegate.swift in Sources */,
 			);
