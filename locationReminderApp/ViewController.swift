@@ -19,6 +19,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil)
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap:")
         self.mapView.addGestureRecognizer(longPress)
         self.locationManager.delegate = self
@@ -41,6 +43,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         default:
             println("Default")
         }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func didLongPressMap(sender: UILongPressGestureRecognizer) {
@@ -96,18 +102,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     //Tells the delegate that new location data is available.
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        println("Location Update!")
+        println("Location Updated!")
         
         if let location = locations.last as? CLLocation {
             println("Lat: \(location.coordinate.latitude), Long: \(location.coordinate.longitude)")
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //Asks the delegate for a renderer object to use when drawing the specified overlay.
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        let renderer = MKCircleRenderer(overlay: overlay)
+        
+        renderer.fillColor = UIColor.blackColor().colorWithAlphaComponent(0.10)
+        renderer.strokeColor = UIColor.blueColor()
+        renderer.lineWidth = 0.5
+        
+        return renderer
+    }
+    
+    func reminderAdded(notification: NSNotification) {
+        //The user information dictionary associated with the receiver.
+        let userInfo = notification.userInfo!
+        let geoRegion = userInfo["region"] as CLCircularRegion
+        
+        let overlay = MKCircle(centerCoordinate: geoRegion.center, radius: geoRegion.radius)
+        self.mapView.addOverlay(overlay)
     }
 
-
 }
+
+
+
+
+
 
