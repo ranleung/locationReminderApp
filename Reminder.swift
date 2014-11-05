@@ -13,7 +13,8 @@ class Reminder: NSManagedObject {
 
     @NSManaged var name: String
     @NSManaged var date: NSDate
-    @NSManaged var radius: String
-    @NSManaged var coordinate: String
+    @NSManaged var radius: Double
+    @NSManaged var longitude: Double
+    @NSManaged var latitude: Double
 
 }

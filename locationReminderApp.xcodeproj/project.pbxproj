@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		703AB10D1A0AC1D70038763B /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703AB10C1A0AC1D70038763B /* ReminderTableViewController.swift */; };
+		703AB1431A0AD5CE0038763B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703AB1421A0AD5CE0038763B /* CloudKit.framework */; };
 		70762C131A0821DF005DC3AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70762C121A0821DF005DC3AA /* AppDelegate.swift */; };
 		70762C161A0821DF005DC3AA /* locationReminderApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70762C141A0821DF005DC3AA /* locationReminderApp.xcdatamodeld */; };
 		70762C181A0821DF005DC3AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70762C171A0821DF005DC3AA /* ViewController.swift */; };
@@ -30,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		703AB10C1A0AC1D70038763B /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderTableViewController.swift; sourceTree = "<group>"; };
+		703AB1411A0AD5BA0038763B /* locationReminderApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = locationReminderApp.entitlements; sourceTree = "<group>"; };
+		703AB1421A0AD5CE0038763B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		70762C0D1A0821DF005DC3AA /* locationReminderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = locationReminderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70762C111A0821DF005DC3AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70762C121A0821DF005DC3AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70762C361A0821F3005DC3AA /* MapKit.framework in Frameworks */,
+				703AB1431A0AD5CE0038763B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +74,7 @@
 		70762C041A0821DF005DC3AA = {
 			isa = PBXGroup;
 			children = (
+				703AB1421A0AD5CE0038763B /* CloudKit.framework */,
 				70762C351A0821F3005DC3AA /* MapKit.framework */,
 				70762C0F1A0821DF005DC3AA /* locationReminderApp */,
 				70762C281A0821DF005DC3AA /* locationReminderAppTests */,
@@ -87,9 +94,11 @@
 		70762C0F1A0821DF005DC3AA /* locationReminderApp */ = {
 			isa = PBXGroup;
 			children = (
+				703AB1411A0AD5BA0038763B /* locationReminderApp.entitlements */,
 				70762C121A0821DF005DC3AA /* AppDelegate.swift */,
 				70762C171A0821DF005DC3AA /* ViewController.swift */,
 				70762C371A082D64005DC3AA /* AddReminderViewController.swift */,
+				703AB10C1A0AC1D70038763B /* ReminderTableViewController.swift */,
 				70762C191A0821DF005DC3AA /* Main.storyboard */,
 				70762C1C1A0821DF005DC3AA /* Images.xcassets */,
 				70762C1E1A0821DF005DC3AA /* LaunchScreen.xib */,
@@ -174,8 +183,12 @@
 				TargetAttributes = {
 					70762C0C1A0821DF005DC3AA = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = A5MPAT85XR;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -235,6 +248,7 @@
 				70EE47DA1A098BBE007D7C3D /* Reminder.swift in Sources */,
 				70762C161A0821DF005DC3AA /* locationReminderApp.xcdatamodeld in Sources */,
 				70762C131A0821DF005DC3AA /* AppDelegate.swift in Sources */,
+				703AB10D1A0AC1D70038763B /* ReminderTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,9 +373,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = locationReminderApp/locationReminderApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = locationReminderApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -369,9 +387,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = locationReminderApp/locationReminderApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = locationReminderApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

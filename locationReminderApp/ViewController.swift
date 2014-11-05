@@ -22,7 +22,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil)
         
         let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap:")
+        longPress.minimumPressDuration = 1.0
         self.mapView.addGestureRecognizer(longPress)
+        
         self.locationManager.delegate = self
         self.mapView.delegate = self
         
@@ -107,10 +109,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     //Tells the delegate that new location data is available.
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        println("Location Updated!")
         
         if let location = locations.last as? CLLocation {
-            println("Lat: \(location.coordinate.latitude), Long: \(location.coordinate.longitude)")
+            //println("Lat: \(location.coordinate.latitude), Long: \(location.coordinate.longitude)")
             
             //Reverse Geocoding
             CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
@@ -127,7 +128,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         subThoroughfare = ""
                     }
                     
-                    println("The address is: \(subThoroughfare) \(p.thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)")
+                    //println("The address is: \(subThoroughfare) \(p.thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)")
                 }
             })
         }

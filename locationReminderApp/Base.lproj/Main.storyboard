@@ -8,7 +8,7 @@
         <!--Item 2-->
         <scene sceneID="JJo-ux-K9X">
             <objects>
-                <viewController id="2Qn-h0-GuO" sceneMemberID="viewController">
+                <viewController id="2Qn-h0-GuO" customClass="ReminderTableViewController" customModule="locationReminderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xuG-TM-Snz"/>
                         <viewControllerLayoutGuide type="bottom" id="G1D-Po-XTd"/>
@@ -16,9 +16,33 @@
                     <view key="view" contentMode="scaleToFill" id="Kks-9Z-z5e">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gvn-I2-cnf">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="REMINDER_CELL" id="jDe-dr-qei">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jDe-dr-qei" id="Amn-uu-PRh">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gvn-I2-cnf" firstAttribute="bottom" secondItem="Kks-9Z-z5e" secondAttribute="bottomMargin" id="DyU-JB-deb"/>
+                            <constraint firstItem="Gvn-I2-cnf" firstAttribute="top" secondItem="Kks-9Z-z5e" secondAttribute="topMargin" id="LMK-MG-4El"/>
+                            <constraint firstItem="Gvn-I2-cnf" firstAttribute="leading" secondItem="Kks-9Z-z5e" secondAttribute="leadingMargin" constant="-16" id="MBK-Fu-Lt9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gvn-I2-cnf" secondAttribute="trailing" constant="-16" id="j5f-zk-5gI"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="slZ-Cj-xjt"/>
+                    <connections>
+                        <outlet property="tableView" destination="Gvn-I2-cnf" id="iz5-iw-YjL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSr-hr-qXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
