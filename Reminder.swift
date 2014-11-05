@@ -1,5 +1,5 @@
 //
-//  locationReminderApp.swift
+//  Reminder.swift
 //  locationReminderApp
 //
 //  Created by Randall Leung on 11/4/14.

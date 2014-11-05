@@ -86,10 +86,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         case .Authorized:
             println("Changed to Authorized")
             //Starts the generation of updates that report the user’s current location.
-            //self.locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingLocation()
         default:
             println("Default on authorization change")
         }
+    }
+    
+    //Handling fail for location, ie: user does not agree with location servcies
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("The location update has failed, error is: \(error)")
     }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
@@ -106,6 +111,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         if let location = locations.last as? CLLocation {
             println("Lat: \(location.coordinate.latitude), Long: \(location.coordinate.longitude)")
+            
+            //Reverse Geocoding
+            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+                if error != nil {
+                    println(error)
+                } else {
+                    let p = CLPlacemark(placemark: placemarks?[0] as CLPlacemark)
+                    
+                    //Additional street-level information for the placemark.
+                    var subThoroughfare: String
+                    if (p.subThoroughfare != nil) {
+                        subThoroughfare = p.subThoroughfare
+                    } else {
+                        subThoroughfare = ""
+                    }
+                    
+                    println("The address is: \(subThoroughfare) \(p.thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)")
+                }
+            })
         }
     }
     
