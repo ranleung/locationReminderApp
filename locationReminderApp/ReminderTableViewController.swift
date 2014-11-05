@@ -23,17 +23,17 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         self.managedObjectContext = appDelegate.managedObjectContext
         
         //Getting data from when iCloud data changes
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didGetCloudChanged:", name: NSPersistentStoreCoordinatorStoresDidChangeNotification, object: appDelegate.persistentStoreCoordinator)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didGetCloudChanged:", name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: appDelegate.persistentStoreCoordinator)
         
         self.tableView.dataSource = self
         
         var fetchRequest = NSFetchRequest(entityName: "Reminder")
         //The sort descriptors specify how the objects returned when the fetch request is issued should be ordered
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "radius", ascending: true)]
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "longitude", ascending: true)]
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "radius", ascending: true)]
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "longitude", ascending: true)]
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Reminders")
         self.fetchedResultsController.delegate = self
