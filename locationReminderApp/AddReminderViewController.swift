@@ -15,11 +15,10 @@ class AddReminderViewController: UIViewController {
     var locationManager: CLLocationManager!
     var selectedAnnotation: MKAnnotation!
     var managedObjectContext: NSManagedObjectContext!
-
-    @IBOutlet var latLabel: UILabel!
-    @IBOutlet var lonLabel: UILabel!    
+  
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var reminderNameLabel: UITextField!
     
     var lat: CLLocationDegrees?
     var lon: CLLocationDegrees?
@@ -62,8 +61,6 @@ class AddReminderViewController: UIViewController {
                 }
                 self.address = "\(subThoroughfare) \(thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)"
                 
-                self.latLabel.text = "\(self.lat!)"
-                self.lonLabel.text = "\(self.lon!)"
                 self.addressLabel.text = self.address
             }
         })
@@ -83,13 +80,17 @@ class AddReminderViewController: UIViewController {
 
     @IBAction func addReminderButton(sender: AnyObject) {
         
+        if self.reminderNameLabel.text == nil {
+            self.reminderNameLabel.text == ""
+        }
+        
         //defines the location and boundaries for a circular geographic region
-        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: 4000.0, identifier: "TestRegion")
+        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: 4000.0, identifier: self.reminderNameLabel.text)
         self.locationManager.startMonitoringForRegion(geoRegion)
         
         //Inserting into CoreData
         var newReminder = NSEntityDescription.insertNewObjectForEntityForName("Reminder", inManagedObjectContext: self.managedObjectContext) as Reminder
-        newReminder.name = "TestRegion"
+        newReminder.name = self.reminderNameLabel.text
         newReminder.latitude = geoRegion.center.latitude
         newReminder.longitude = geoRegion.center.latitude
         newReminder.radius = geoRegion.radius
