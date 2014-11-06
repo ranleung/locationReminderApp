@@ -112,15 +112,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T89-rC-PPG">
-                                <rect key="frame" x="250" y="285" width="99" height="30"/>
-                                <state key="normal" title="Add Reminder">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addReminderButton:" destination="6Ga-hz-JbD" eventType="touchUpInside" id="7jd-Nh-2vb"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gl-vY-gjf">
                                 <rect key="frame" x="24" y="40" width="68" height="25"/>
                                 <constraints>
@@ -159,8 +150,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Infinite Loop" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AP1-Xe-uK8">
-                                <rect key="frame" x="454.5" y="130" width="109.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Infinite Loop" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AP1-Xe-uK8">
+                                <rect key="frame" x="454" y="130" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -175,26 +166,54 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYT-w7-tGT">
+                                <rect key="frame" x="536" y="550" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="6Ga-hz-JbD" eventType="touchUpInside" id="yuE-DC-Da0"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p6B-jM-GqQ">
+                                <rect key="frame" x="0.0" y="307" width="600" height="230"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T89-rC-PPG">
+                                <rect key="frame" x="251" y="269" width="99" height="30"/>
+                                <state key="normal" title="Add Reminder">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addReminderButton:" destination="6Ga-hz-JbD" eventType="touchUpInside" id="7jd-Nh-2vb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="7CB-vB-F5E" secondAttribute="centerX" id="0DV-sk-4iT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jQt-AB-vuY" secondAttribute="trailing" constant="20" id="3Vg-Eq-JWR"/>
                             <constraint firstItem="7CB-vB-F5E" firstAttribute="top" secondItem="wgD-eS-vt3" secondAttribute="bottom" constant="20" id="5Zn-yw-USn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T89-rC-PPG" secondAttribute="trailing" constant="234" id="CzJ-CX-H0g"/>
+                            <constraint firstItem="pYT-w7-tGT" firstAttribute="top" secondItem="p6B-jM-GqQ" secondAttribute="bottom" constant="13" id="DVh-Pz-yH8"/>
                             <constraint firstItem="wF0-6M-0RE" firstAttribute="top" secondItem="zfF-7h-Tb4" secondAttribute="bottom" constant="20" id="IH5-gb-9lu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7CB-vB-F5E" secondAttribute="trailing" constant="20" id="JXt-dP-xdW"/>
                             <constraint firstAttribute="centerX" secondItem="jQt-AB-vuY" secondAttribute="centerX" id="NyG-1h-UCB"/>
-                            <constraint firstAttribute="centerX" secondItem="T89-rC-PPG" secondAttribute="centerX" id="PJG-NC-lGf"/>
                             <constraint firstItem="8Gl-vY-gjf" firstAttribute="top" secondItem="wgD-eS-vt3" secondAttribute="bottom" constant="20" id="QBr-yk-vqb"/>
-                            <constraint firstAttribute="centerY" secondItem="T89-rC-PPG" secondAttribute="centerY" id="SYc-pH-elv"/>
                             <constraint firstItem="zfF-7h-Tb4" firstAttribute="top" secondItem="8Gl-vY-gjf" secondAttribute="bottom" constant="20" id="TcQ-70-8rq"/>
+                            <constraint firstItem="T89-rC-PPG" firstAttribute="leading" secondItem="u5f-RE-FU8" secondAttribute="leadingMargin" constant="235" id="Upa-Wl-VlB"/>
                             <constraint firstItem="zfF-7h-Tb4" firstAttribute="leading" secondItem="u5f-RE-FU8" secondAttribute="leadingMargin" constant="8" id="YyW-Vn-l7d"/>
                             <constraint firstAttribute="centerX" secondItem="AP1-Xe-uK8" secondAttribute="centerX" id="aRF-mb-zIb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p6B-jM-GqQ" secondAttribute="trailing" constant="-16" id="cdg-Qb-48s"/>
                             <constraint firstItem="AP1-Xe-uK8" firstAttribute="top" secondItem="jQt-AB-vuY" secondAttribute="bottom" constant="20" id="eAI-ea-gto"/>
+                            <constraint firstItem="pYT-w7-tGT" firstAttribute="trailing" secondItem="u5f-RE-FU8" secondAttribute="trailingMargin" id="eXR-jg-SO6"/>
+                            <constraint firstItem="T89-rC-PPG" firstAttribute="top" secondItem="wgD-eS-vt3" secondAttribute="bottom" constant="249" id="goK-Sf-KnP"/>
                             <constraint firstItem="jQt-AB-vuY" firstAttribute="top" secondItem="7CB-vB-F5E" secondAttribute="bottom" constant="20" id="hth-pr-m9h"/>
+                            <constraint firstItem="p6B-jM-GqQ" firstAttribute="leading" secondItem="u5f-RE-FU8" secondAttribute="leadingMargin" constant="-16" id="kfd-ml-OZ1"/>
+                            <constraint firstItem="mGp-Ez-wH3" firstAttribute="top" secondItem="pYT-w7-tGT" secondAttribute="bottom" constant="20" id="r8F-di-uc5"/>
                             <constraint firstItem="wF0-6M-0RE" firstAttribute="leading" secondItem="u5f-RE-FU8" secondAttribute="leadingMargin" constant="8" id="ryQ-cZ-0ps"/>
                             <constraint firstItem="8Gl-vY-gjf" firstAttribute="leading" secondItem="u5f-RE-FU8" secondAttribute="leadingMargin" constant="8" id="sg5-4A-9va"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AP1-Xe-uK8" secondAttribute="trailing" constant="20" id="tkF-2D-ECi"/>
+                            <constraint firstItem="p6B-jM-GqQ" firstAttribute="top" secondItem="T89-rC-PPG" secondAttribute="bottom" constant="8" id="wvG-JE-THn"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -208,6 +227,7 @@
                         <outlet property="addressLabel" destination="AP1-Xe-uK8" id="lnU-Ei-mfD"/>
                         <outlet property="latLabel" destination="7CB-vB-F5E" id="KKF-mb-wql"/>
                         <outlet property="lonLabel" destination="jQt-AB-vuY" id="GWV-B7-4cR"/>
+                        <outlet property="mapView" destination="p6B-jM-GqQ" id="86w-SP-dgK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yo-ap-17R" userLabel="First Responder" sceneMemberID="firstResponder"/>

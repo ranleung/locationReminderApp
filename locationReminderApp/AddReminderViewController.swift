@@ -19,6 +19,7 @@ class AddReminderViewController: UIViewController {
     @IBOutlet var latLabel: UILabel!
     @IBOutlet var lonLabel: UILabel!    
     @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var mapView: MKMapView!
     
     var lat: CLLocationDegrees?
     var lon: CLLocationDegrees?
@@ -67,6 +68,17 @@ class AddReminderViewController: UIViewController {
             }
         })
         
+        var latDelta: CLLocationDegrees = 0.01
+        var lonDelta: CLLocationDegrees = 0.01
+        var span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        var loc2D: CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.lat!, self.lon!)
+        var region: MKCoordinateRegion = MKCoordinateRegionMake(loc2D, span)
+        self.mapView.setRegion(region, animated: true)
+        
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = loc2D
+        self.mapView.addAnnotation(annotation)
+        
     }
 
     @IBAction func addReminderButton(sender: AnyObject) {
@@ -95,6 +107,9 @@ class AddReminderViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func cancelButton(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
