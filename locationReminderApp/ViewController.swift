@@ -15,6 +15,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     let locationManager = CLLocationManager()
     @IBOutlet var mapView: MKMapView!
+    var lat: CLLocationDegrees?
+    var lon: CLLocationDegrees?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBAction func findMeButton(sender: AnyObject) {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        //Need to zoom into user location
+        
+        var loc2D: CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.lat!, self.lon!)
+        
+        let region = MKCoordinateRegionMake(loc2D, MKCoordinateSpanMake(0.01, 0.01))
+        let mapRegion = self.mapView.regionThatFits(region)
+        self.mapView.setRegion(mapRegion, animated: true)
+        
     }
     
     func didLongPressMap(sender: UILongPressGestureRecognizer) {
@@ -67,10 +75,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let touchPoint = sender.locationInView(self.mapView)
             let touchCoordinate = self.mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
             println("Lat: \(touchCoordinate.latitude) and Long: \(touchCoordinate.longitude)")
-            var annotation = MKPointAnnotation()
+            let annotation = MKPointAnnotation()
             annotation.coordinate = touchCoordinate
             annotation.title = "Add Reminder"
             self.mapView.addAnnotation(annotation)
+            
+            let region = MKCoordinateRegionMake(touchCoordinate, MKCoordinateSpanMake(0.01, 0.01))
+            let mapRegion = self.mapView.regionThatFits(region)
+            self.mapView.setRegion(mapRegion, animated: true)
         }
     }
     
@@ -129,25 +141,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         if let location = locations.last as? CLLocation {
             //println("Lat: \(location.coordinate.latitude), Long: \(location.coordinate.longitude)")
-            
-            //Reverse Geocoding
-            CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-                if error != nil {
-                    println(error)
-                } else {
-                    let p = CLPlacemark(placemark: placemarks?[0] as CLPlacemark)
-                    
-                    //Additional street-level information for the placemark.
-                    var subThoroughfare: String
-                    if (p.subThoroughfare != nil) {
-                        subThoroughfare = p.subThoroughfare
-                    } else {
-                        subThoroughfare = ""
-                    }
-                    
-                    //println("The address is: \(subThoroughfare) \(p.thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)")
-                }
-            })
+            self.lat = location.coordinate.latitude
+            self.lon = location.coordinate.longitude
         }
     }
     

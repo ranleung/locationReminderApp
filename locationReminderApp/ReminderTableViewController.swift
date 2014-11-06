@@ -15,6 +15,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     var fetchedResultsController: NSFetchedResultsController!
     
     @IBOutlet var tableView: UITableView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         
         var fetchRequest = NSFetchRequest(entityName: "Reminder")
         //The sort descriptors specify how the objects returned when the fetch request is issued should be ordered
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Reminders")
         self.fetchedResultsController.delegate = self
@@ -52,6 +53,12 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     func didGetCloudChanged(notification: NSNotification) {
         self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
     }
+    
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
+        cell.textLabel.text = reminder.name
+        cell.detailTextLabel!.text = "Added on: \(self.dateFormatter.stringFromDate(reminder.date))"
+    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
@@ -60,9 +67,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("REMINDER_CELL", forIndexPath: indexPath) as UITableViewCell
         
-        let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
-        cell.textLabel.text = reminder.name
-        
+        self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
@@ -84,6 +89,8 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
 
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
         case .Delete:
             self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
         default:
@@ -93,10 +100,15 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         default:
             return
         }
@@ -105,6 +117,13 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.reloadData()
     }
+    
+    lazy var dateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        return formatter
+        }()
 
 
 

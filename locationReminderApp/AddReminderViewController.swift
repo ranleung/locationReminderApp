@@ -67,8 +67,8 @@ class AddReminderViewController: UIViewController {
             }
         })
         
-        var latDelta: CLLocationDegrees = 0.01
-        var lonDelta: CLLocationDegrees = 0.01
+        var latDelta: CLLocationDegrees = 0.05
+        var lonDelta: CLLocationDegrees = 0.05
         var span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
         var loc2D: CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.lat!, self.lon!)
         var region: MKCoordinateRegion = MKCoordinateRegionMake(loc2D, span)
