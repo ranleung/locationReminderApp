@@ -19,6 +19,8 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Saved Locations"
+        
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.managedObjectContext = appDelegate.managedObjectContext
         

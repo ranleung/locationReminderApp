@@ -19,6 +19,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Map"
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil)
         
         let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap:")
@@ -49,6 +51,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    //Finds User Location
+    @IBAction func findMeButton(sender: AnyObject) {
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        //Need to zoom into user location
     }
     
     func didLongPressMap(sender: UILongPressGestureRecognizer) {
@@ -101,6 +110,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
         println("Entered Location")
+        
+        if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+            var notification = UILocalNotification()
+            notification.alertAction = "You've entered a monitored region!"
+            notification.alertBody = "This is your reminder, you've just entered a monitored region!"
+            notification.fireDate = NSDate()
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
     }
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {

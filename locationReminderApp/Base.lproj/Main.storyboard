@@ -59,7 +59,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hv7-VW-Fmf"/>
+                        <segue destination="LSc-4L-fCj" kind="relationship" relationship="viewControllers" id="hv7-VW-Fmf"/>
                         <segue destination="65W-iw-aLH" kind="relationship" relationship="viewControllers" id="fZU-O6-cxT"/>
                     </connections>
                 </tabBarController>
@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="-1272" y="-211"/>
         </scene>
-        <!--World-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="locationReminderApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,14 +91,20 @@
                             <constraint firstItem="h9W-Wh-LIy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="fir-rT-bXa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="World" image="WorldTabBarIcon" id="Dct-0z-53h"/>
+                    <navigationItem key="navigationItem" id="uQU-8U-57K">
+                        <barButtonItem key="rightBarButtonItem" title="Find Me" id="Jo1-tH-lhR">
+                            <connections>
+                                <action selector="findMeButton:" destination="BYZ-38-t0r" id="XTt-8Y-HTM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="h9W-Wh-LIy" id="eLB-n6-zAI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-451" y="-577"/>
+            <point key="canvasLocation" x="361" y="-577"/>
         </scene>
         <!--Add Reminder View Controller-->
         <scene sceneID="eb3-Mq-Baz">
@@ -136,7 +142,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Name of this Reminder" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mkL-EE-kNo">
                                 <rect key="frame" x="24" y="45" width="404" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T89-rC-PPG">
                                 <rect key="frame" x="485" y="41" width="99" height="30"/>
@@ -183,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yo-ap-17R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="315" y="-577"/>
+            <point key="canvasLocation" x="1127" y="-577"/>
         </scene>
         <!--Saved-->
         <scene sceneID="RP9-NS-p9Z">
@@ -204,9 +210,28 @@
             </objects>
             <point key="canvasLocation" x="-451" y="119"/>
         </scene>
+        <!--Map-->
+        <scene sceneID="gW3-od-jcv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LSc-4L-fCj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="WorldTabBarIcon" id="Dct-0z-53h"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N5O-rL-Cqv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Jxa-xJ-vRf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eX6-zz-HFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-451" y="-577"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="LocationTabBarIcon" width="30" height="30"/>
-        <image name="WorldTabBarIcon" width="30" height="30"/>
+        <image name="LocationTabBarIcon" width="60" height="60"/>
+        <image name="WorldTabBarIcon" width="60" height="60"/>
     </resources>
 </document>
