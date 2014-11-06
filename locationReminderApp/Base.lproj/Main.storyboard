@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="-1272" y="-211"/>
         </scene>
-        <!--Item-->
+        <!--World-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="locationReminderApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,7 +91,7 @@
                             <constraint firstItem="h9W-Wh-LIy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="fir-rT-bXa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Dct-0z-53h"/>
+                    <tabBarItem key="tabBarItem" title="World" image="WorldTabBarIcon" id="Dct-0z-53h"/>
                     <connections>
                         <outlet property="mapView" destination="h9W-Wh-LIy" id="eLB-n6-zAI"/>
                     </connections>
@@ -185,11 +185,11 @@
             </objects>
             <point key="canvasLocation" x="315" y="-577"/>
         </scene>
-        <!--Item-->
+        <!--Saved-->
         <scene sceneID="RP9-NS-p9Z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="65W-iw-aLH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="AX3-va-x1d"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="LocationTabBarIcon" id="AX3-va-x1d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QG-1L-npX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -205,4 +205,8 @@
             <point key="canvasLocation" x="-451" y="119"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LocationTabBarIcon" width="30" height="30"/>
+        <image name="WorldTabBarIcon" width="30" height="30"/>
+    </resources>
 </document>
