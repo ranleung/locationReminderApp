@@ -19,6 +19,8 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.managedObjectContext = appDelegate.managedObjectContext
         
@@ -30,10 +32,6 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         var fetchRequest = NSFetchRequest(entityName: "Reminder")
         //The sort descriptors specify how the objects returned when the fetch request is issued should be ordered
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "radius", ascending: true)]
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "longitude", ascending: true)]
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Reminders")
         self.fetchedResultsController.delegate = self
@@ -68,10 +66,41 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let context = self.fetchedResultsController.managedObjectContext
+            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject)
+            
+            var error: NSError? = nil
+            if !context.save(&error) {
+                println(error)
+            }
+        }
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            return
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        default:
+            return
+        }
+    }
+    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.reloadData()
     }
-    
 
 
 

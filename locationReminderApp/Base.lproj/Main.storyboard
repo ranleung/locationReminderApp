@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Reminder Table View Controller-->
         <scene sceneID="JJo-ux-K9X">
             <objects>
                 <viewController id="2Qn-h0-GuO" customClass="ReminderTableViewController" customModule="locationReminderApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,14 +39,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Gvn-I2-cnf" secondAttribute="trailing" constant="-16" id="j5f-zk-5gI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="slZ-Cj-xjt"/>
+                    <navigationItem key="navigationItem" id="JJh-rj-Qje"/>
                     <connections>
                         <outlet property="tableView" destination="Gvn-I2-cnf" id="iz5-iw-YjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSr-hr-qXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-451" y="97"/>
+            <point key="canvasLocation" x="361" y="97"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pl0-X4-CU2">
@@ -60,7 +60,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hv7-VW-Fmf"/>
-                        <segue destination="2Qn-h0-GuO" kind="relationship" relationship="viewControllers" id="UnY-7y-xLV"/>
+                        <segue destination="5FQ-x0-E8Z" kind="relationship" relationship="viewControllers" id="UnY-7y-xLV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzH-XI-r0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,6 +132,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yo-ap-17R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="315" y="-577"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="tkn-Oq-iTy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5FQ-x0-E8Z" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" id="slZ-Cj-xjt"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vLA-Tg-dXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2Qn-h0-GuO" kind="relationship" relationship="rootViewController" id="enV-7I-CYP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hj8-b1-GgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-451" y="97"/>
         </scene>
     </scenes>
 </document>
