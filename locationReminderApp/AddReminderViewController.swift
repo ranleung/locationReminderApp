@@ -16,6 +16,14 @@ class AddReminderViewController: UIViewController {
     var selectedAnnotation: MKAnnotation!
     var managedObjectContext: NSManagedObjectContext!
 
+    @IBOutlet var latLabel: UILabel!
+    @IBOutlet var lonLabel: UILabel!    
+    @IBOutlet var addressLabel: UILabel!
+    
+    var lat: CLLocationDegrees?
+    var lon: CLLocationDegrees?
+    var address: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +33,40 @@ class AddReminderViewController: UIViewController {
         //The set of shared regions monitored by all location manager objects. (read-only)
         //let regionSet = self.locationManager.monitoredRegions
         //let regions = regionSet.allObjects
+        
+        self.lat = self.selectedAnnotation.coordinate.latitude
+        self.lon = self.selectedAnnotation.coordinate.longitude
+        
+        var location = CLLocation(latitude: lat!, longitude: lon!)
+        
+        //Reverse Geocoding
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler:{(placemarks, error) in
+            if error != nil {
+                println(error)
+            } else {
+                let p = CLPlacemark(placemark: placemarks?[0] as CLPlacemark)
+                
+                //Additional street-level information if exists.
+                var subThoroughfare: String
+                if (p.subThoroughfare != nil) {
+                    subThoroughfare = p.subThoroughfare
+                } else {
+                    subThoroughfare = ""
+                }
+                var thoroughfare: String
+                if (p.thoroughfare != nil) {
+                    thoroughfare = p.thoroughfare
+                } else {
+                    thoroughfare = ""
+                }
+                self.address = "\(subThoroughfare) \(thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)"
+                
+                self.latLabel.text = "\(self.lat!)"
+                self.lonLabel.text = "\(self.lon!)"
+                self.addressLabel.text = self.address
+            }
+        })
+        
     }
 
     @IBAction func addReminderButton(sender: AnyObject) {
