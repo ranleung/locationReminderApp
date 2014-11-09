@@ -15,7 +15,7 @@ class AddReminderViewController: UIViewController {
     var locationManager: CLLocationManager!
     var selectedAnnotation: MKAnnotation!
     var managedObjectContext: NSManagedObjectContext!
-  
+    
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var reminderNameLabel: UITextField!
@@ -26,8 +26,6 @@ class AddReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Add Reminder"
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.managedObjectContext = appDelegate.managedObjectContext
@@ -51,19 +49,20 @@ class AddReminderViewController: UIViewController {
                 //Additional street-level information if exists.
                 var subThoroughfare: String
                 if (p.subThoroughfare != nil) {
-                    subThoroughfare = p.subThoroughfare
+                    subThoroughfare = p.subThoroughfare!
                 } else {
                     subThoroughfare = ""
                 }
                 var thoroughfare: String
                 if (p.thoroughfare != nil) {
-                    thoroughfare = p.thoroughfare
+                    thoroughfare = p.thoroughfare!
                 } else {
                     thoroughfare = ""
                 }
-                self.address = "\(subThoroughfare) \(thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)"
+                self.address = "\(subThoroughfare) \(thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode!) \n \(p.country)"
                 
-                self.addressLabel.text = self.address
+                self.addressLabel.text = "HI"
+
             }
         })
         
